@@ -1,0 +1,12 @@
+node_modules/
+/imp
+/imp.bleve
+.idea/
+gin-bin.exe
+/public/*
+storage/*
+/pages.bleve
+/puberdb.bleve
+/publications.bleve
+/users.bleve
+/config

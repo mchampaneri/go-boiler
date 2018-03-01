@@ -1,0 +1,12 @@
+{
+  "pages":[
+    {
+      "url":"/",
+      "view":"index.html"
+    },
+    {
+      "url":"/about",
+      "view":"about.html"
+    }
+  ]
+}
