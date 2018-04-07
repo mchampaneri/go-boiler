@@ -7,6 +7,7 @@ import (
 	"github.com/gorilla/mux"
 	"net/http"
 	"os"
+	"fmt"
 )
 
 /* *0
@@ -31,9 +32,12 @@ func RegisterWebRoutes() {
 
 	mainrouter.HandleFunc("/favicon.ico", faviconHandler)
 
-	// Loading The Static Routes
-	staticPagesLoader(mainrouter)
+	for _, page := range StaticPages.Pages {
+		// Loading The Static Routes
+		currRoute := mainrouter.NewRoute()
+		staticPagesLoader(page,currRoute)
 
+	}
 	// Loading The Dynamic Routes
 	dynamicRoutes(mainrouter)
 
@@ -46,10 +50,10 @@ func RegisterWebRoutes() {
 	http.Handle("/", mainrouter)
 
 	color.Yellow(" * Spinned PuberStreet Web Server on %s %s  ", Config.AppUrl, Config.Port)
-	logged_router := handlers.LoggingHandler(os.Stdout,mainrouter)
+	logged_router := handlers.LoggingHandler(os.Stdout, mainrouter)
 	if Config.Env == "dev" {
 		http.ListenAndServe(Config.Port, handlers.CompressHandler(csrf.Protect([]byte("El0a6L8uqv"), csrf.Secure(false))(logged_router)))
-	} else if Config.Env == "prod"{
+	} else if Config.Env == "prod" {
 		http.ListenAndServe(Config.Port, handlers.CompressHandler(csrf.Protect([]byte("El0a6L8uqv"), csrf.Secure(true))(mainrouter)))
 	}
 }
@@ -61,13 +65,15 @@ func faviconHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "./favicon.ico")
 }
 
-func staticPagesLoader(router *mux.Router){
+func staticPagesLoader(page *Page, nextroute *mux.Route){
 	color.Yellow(" * Static Routes Loading ")
-	for _,page := range StaticPages.Pages{
-		color.White(" * [ Static Route: %s - %s ] ",page.Url,page.View)
-		router.HandleFunc(page.Url, func(w http.ResponseWriter, r *http.Request) {
-			View(w,r,nil,page.View)
+
+		color.White(" * [ Static Route: %s - %s ] ", page.Url, page.View)
+
+		nextroute.Path(page.Url)
+		nextroute.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			fmt.Println(r.RequestURI," ",w.Header(),page.View,page.Url)
+			View(w, r, nil, page.View)
 		})
-	}
-	color.Green(" * Static Routes Loaded Successfully ")
+	return
 }

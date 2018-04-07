@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/boltdb/bolt"
-	"github.com/fatih/color"
 	"encoding/json"
 	"time"
+
+	"github.com/boltdb/bolt"
+	"github.com/fatih/color"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -28,6 +29,7 @@ func (u *User) LoginUser() (authPass bool, su *User) {
 func (u *User) RegisterUser() *User {
 	u.Password = u.HashPassword(u.Password)
 	marshal, _ := u.MarshalJSON()
+	SendMail("mails/sample.html", "sample.cobrastck@mchampaneri.in", "Demo Email", "This is demo mail", "m.champaneri.20@gmail.com", nil)
 	err := Db.Update(func(tx *bolt.Tx) error {
 		b := tx.Bucket([]byte("users"))
 		err := b.Put([]byte(u.Email), marshal)

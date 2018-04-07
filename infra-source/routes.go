@@ -7,4 +7,5 @@ func dynamicRoutes(router *mux.Router){
 	router.HandleFunc("/register",registerUser)
 	router.HandleFunc("/users",allUsers)
 	router.HandleFunc("/login",loginUser)
+
 }

@@ -25,7 +25,7 @@ func check(req *http.Request) bool {
 
 func auth(pass http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		if Check(r) == true {
+		if check(r) == true {
 			pass(w, r)
 			return
 		}
@@ -36,7 +36,7 @@ func auth(pass http.HandlerFunc) http.HandlerFunc {
 
 func admin(pass http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		if Check(r) == true {
+		if check(r) == true {
 			session, _ := UserSession.Get(r, "mvc-user-session")
 			if session.Values["role"] == 1 {
 				pass(w, r)
@@ -44,7 +44,7 @@ func admin(pass http.HandlerFunc) http.HandlerFunc {
 			}
 		}
 		// redirect to login
-		http.Redirect(w, r, "/", http.StatusMovedPermanently)
+		http.Redirect(w, r, "/login", http.StatusMovedPermanently)
 	}
 }
 

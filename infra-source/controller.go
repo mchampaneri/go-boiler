@@ -8,6 +8,8 @@ func indexPage(w http.ResponseWriter, r *http.Request) {
 	View(w, r, nil, "index.html")
 }
 
+// Authentication Related Functions //
+
 func registerUser(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
 		View(w, r, nil, "auth/register.html")
@@ -32,7 +34,7 @@ func allUsers(w http.ResponseWriter, r *http.Request) {
 
 func loginUser(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
-		View(w, r, nil, "auth/login")
+		View(w, r, nil, "auth/login.html")
 	} else if r.Method == "POST" {
 		r.ParseForm()
 		user := &User{
@@ -69,9 +71,7 @@ func issueSession(w http.ResponseWriter, r *http.Request, su *User) bool {
 	}
 
 	session.Save(r, w)
-
-
-
+	return  true
 }
 
 func logout(req *http.Request, w http.ResponseWriter) bool {

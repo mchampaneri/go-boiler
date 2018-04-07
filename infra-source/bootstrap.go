@@ -25,13 +25,11 @@ func loadAppConfig() {
 		loadStaticPages.Close()
 	}()
 
-
 	configFileParser := json.NewDecoder(configFile)
 	configFileParser.Decode(&Config)
 
 	staticsFileParser := json.NewDecoder(loadStaticPages)
 	staticsFileParser.Decode(&StaticPages)
-
 
 	color.Green(" * Configurations Loaded SuccessFully ")
 }

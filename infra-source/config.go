@@ -17,7 +17,7 @@ var Config struct {
 	ViewPath    string `json:"ViewPath"`
 	StoragePath string `json:"StoragePath"`
 	PublicPath  string `json:"PublicPath"`
-	Database struct {
+	Database    struct {
 		DatabaseName string `json:"DatabaseName"`
 		Driver       string `json:"Driver"`
 		UserName     string `json:"UserName"`
@@ -29,11 +29,13 @@ var Config struct {
 		Domain    string `json:"Domain"`
 		Key       string `json:"Key"`
 		PublicKey string `json:"PublicKey"`
+		APIKey    string `json:"APIKey"`
 	}
 }
 var StaticPages struct {
 	Pages []*Page `json:"pages"`
 }
+
 type Page struct {
 	Url  string `json:"url"`
 	View string `json:"view"`
@@ -44,4 +46,3 @@ var BigCache *bigcache.BigCache
 
 // Session Manager //
 var UserSession = sessions.NewCookieStore([]byte("xf7KylXJ7CFSH4mLZG2Wyl86HAB9Rqvn"))
-
