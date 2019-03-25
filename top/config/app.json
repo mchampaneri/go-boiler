@@ -15,9 +15,9 @@
   },
   "Mail": {
     "Service":"elasticMail",
-    "Domain": "puberstreet.com",
-    "Key": "key-2fcff6a1835d0be445f2abb3f1c9adf5",
-    "PublicKey": "pubkey-e9a9c8c8c9ae6aba14adc78121b425b0",
-    "APIKey":"56f5489b-2ed1-4f7d-ae68-6599a85b16b7"
+    "Domain": "",
+    "Key": "",
+    "PublicKey": "",
+    "APIKey":""
   }
 }
