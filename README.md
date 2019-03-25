@@ -22,6 +22,7 @@ All libraries are choose by making performace and ease of in balance. You might 
 * Spectre Css ( No JS framework)
 * VueJS
 
-***
+### Has builtin features
+* Authentication & Secured routes
 
 
