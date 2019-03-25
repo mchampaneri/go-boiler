@@ -1,0 +1,18 @@
+.big-popup{
+	box-sizing:border-box;
+	position:absolute;
+	top:92px;
+	left:30px;	
+	padding:10px;
+	border-raduis:10px;
+	z-index:98;
+	width:auto;
+	box-shadow: 2px 4px 2px 2px #cccccc;
+	background-color:#fff;
+	border-bottom:5px solid $main-light;
+}
+.big-popup:before{
+	border-top:5px solid #777;
+	height:100%;
+	width:100%;
+}

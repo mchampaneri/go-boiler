@@ -1,6 +1,6 @@
 # go-boiler
 
-### About 
+### About
 
 go-boiler is boiler plate for create websites and webapps using golang. It has support for vuejs built in.
 
@@ -9,7 +9,7 @@ All libraries are choose by making performace and ease of in balance. You might 
 **( Boiler plate is designe by keeping in mind that frontend developer has zero knowladge of golang )**
 
 
-### Components 
+### Components
 
 #### Golang Libraries
 * Gorilla-mux ( Routing )
@@ -19,8 +19,9 @@ All libraries are choose by making performace and ease of in balance. You might 
 
 #### Frontend
 * Laravel-mix ( Js and css processor )
-* Spectre Css ( No JS framework) 
-* VueJS 
-
+* Spectre Css ( No JS framework)
+* VueJS
 
 ***
+
+

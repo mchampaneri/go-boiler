@@ -1,13 +1,14 @@
 package main
 
 import (
+	"fmt"
+	"net/http"
+	"os"
+
 	"github.com/fatih/color"
 	"github.com/gorilla/csrf"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
-	"net/http"
-	"os"
-	"fmt"
 )
 
 /* *0
@@ -35,7 +36,7 @@ func RegisterWebRoutes() {
 	for _, page := range StaticPages.Pages {
 		// Loading The Static Routes
 		currRoute := mainrouter.NewRoute()
-		staticPagesLoader(page,currRoute)
+		staticPagesLoader(page, currRoute)
 
 	}
 	// Loading The Dynamic Routes
@@ -49,7 +50,7 @@ func RegisterWebRoutes() {
 
 	http.Handle("/", mainrouter)
 
-	color.Yellow(" * Spinned PuberStreet Web Server on %s %s  ", Config.AppUrl, Config.Port)
+	color.Yellow(" * Spinned PuberStreet Web Server on %s %s  ", Config.AppURL, Config.Port)
 	logged_router := handlers.LoggingHandler(os.Stdout, mainrouter)
 	if Config.Env == "dev" {
 		http.ListenAndServe(Config.Port, handlers.CompressHandler(csrf.Protect([]byte("El0a6L8uqv"), csrf.Secure(false))(logged_router)))
@@ -65,15 +66,15 @@ func faviconHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "./favicon.ico")
 }
 
-func staticPagesLoader(page *Page, nextroute *mux.Route){
+func staticPagesLoader(page *Page, nextroute *mux.Route) {
 	color.Yellow(" * Static Routes Loading ")
 
-		color.White(" * [ Static Route: %s - %s ] ", page.Url, page.View)
+	color.White(" * [ Static Route: %s - %s ] ", page.URL, page.View)
 
-		nextroute.Path(page.Url)
-		nextroute.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			fmt.Println(r.RequestURI," ",w.Header(),page.View,page.Url)
-			View(w, r, nil, page.View)
-		})
+	nextroute.Path(page.URL)
+	nextroute.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println(r.RequestURI, " ", w.Header(), page.View, page.URL)
+		View(w, r, nil, page.View)
+	})
 	return
 }
