@@ -5,14 +5,14 @@ import (
 	"github.com/gorilla/sessions"
 )
 
-/* Config is structure that provides the configuration
-|  parameters to the other parts of the app during the
-|  run time
-*/
+// Config is structure that provides the configuration
+//  parameters to the other parts of the app during the
+//  run time
+//
 var Config struct {
 	Env         string `json:"Env"`
 	AppName     string `json:"AppName"`
-	AppUrl      string `json:"AppUrl"`
+	AppURL      string `json:"AppUrl"`
 	Port        string `json:"Port"`
 	ViewPath    string `json:"ViewPath"`
 	StoragePath string `json:"StoragePath"`
@@ -32,17 +32,24 @@ var Config struct {
 		APIKey    string `json:"APIKey"`
 	}
 }
+
+// StaticPages Struct Used to load the 
+// Bunch of the static pages
 var StaticPages struct {
 	Pages []*Page `json:"pages"`
 }
 
+// Page show the static page ie. html page
+// which are located at the @View  path
+// and needed to load over @Url url
 type Page struct {
-	Url  string `json:"url"`
+	URL  string `json:"url"`
 	View string `json:"view"`
 }
 
-// Big Cache //
+// BigCache //
 var BigCache *bigcache.BigCache
 
-// Session Manager //
+// UserSession is the session store which stores the 
+// values for the authenticated user
 var UserSession = sessions.NewCookieStore([]byte("xf7KylXJ7CFSH4mLZG2Wyl86HAB9Rqvn"))

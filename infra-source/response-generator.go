@@ -1,15 +1,16 @@
 package main
 
 import (
-	"os"
-	"github.com/CloudyKit/jet"
-	"path/filepath"
-	"fmt"
-	"github.com/gorilla/csrf"
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"net/http"
+	"os"
+	"path/filepath"
+
+	"github.com/CloudyKit/jet"
 	"github.com/fatih/color"
+	"github.com/gorilla/csrf"
 )
 
 /*
@@ -19,17 +20,18 @@ import (
 */
 
 var root, _ = os.Getwd()
+
+// Jet is sington of the jetTemplate Engine and used by
+// this file
 var Jet = jet.NewHTMLSet(filepath.Join(root, "view"))
 
 func init() {
 	Jet.SetDevelopmentMode(true)
 }
 
-/*
- | Returns the data in form of "JSON" for the incoming
- | request
-*/
-func Json(w http.ResponseWriter, data interface{}) {
+// JSON Returns the data in form of "JSON" for the incoming
+// request
+func JSON(w http.ResponseWriter, data interface{}) {
 	response, err := json.Marshal(data)
 	DefaultLogger.Info("Json Rendered")
 	if err != nil {
@@ -39,10 +41,8 @@ func Json(w http.ResponseWriter, data interface{}) {
 	fmt.Fprint(w, string(response))
 }
 
-/*
-  | Returns a jet view in response of the in coming request
-  | with the data supplied as parameter
-*/
+// View Returns a jet view in response of the in coming request
+// with the data supplied as parameter
 func View(w http.ResponseWriter, r *http.Request, data interface{}, viewName string) {
 	session, err := UserSession.Get(r, "mvc-user-session")
 	if err != nil || session.IsNew {
@@ -59,7 +59,7 @@ func View(w http.ResponseWriter, r *http.Request, data interface{}, viewName str
 		dataMap = data.(map[string]interface{})
 	}
 	vars := make(jet.VarMap)
-	dataMap["AppUrl"] = Config.AppUrl
+	dataMap["AppUrl"] = Config.AppURL
 	// vars.Set("Auth", "true")
 	if session.Values["auth"] == true {
 		dataMap["Auth"] = true
@@ -87,13 +87,10 @@ func View(w http.ResponseWriter, r *http.Request, data interface{}, viewName str
 	}
 }
 
-/*
-  | Returns a jet view in response of the in coming request
-  | with the data supplied as parameter
-  | Used at email templates
-*/
-
-func HtmlString(data interface{}, viewName string) string {
+// HTMLString Returns a jet view in response of the in coming request
+// with the data supplied as parameter
+// Used at email templates
+func HTMLString(data interface{}, viewName string) string {
 	var html bytes.Buffer
 	templateName := viewName
 	t, err := Jet.GetTemplate(templateName)

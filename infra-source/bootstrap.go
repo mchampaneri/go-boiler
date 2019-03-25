@@ -10,10 +10,10 @@ import (
 )
 
 
-/* Function that read the config.json file and populates
-|  the Config singleton to use further in the app during
-|  runtime.
-*/
+// Function that read the config.json file and populates
+//  the Config singleton to use further in the app during
+//  runtime.
+//
 func loadAppConfig() {
 	//sync.Once{}.Do()
 	//current_dir, _ := os.Getwd()

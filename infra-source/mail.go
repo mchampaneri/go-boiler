@@ -13,6 +13,8 @@ import (
 	"github.com/mailgun/mailgun-go"
 )
 
+// SendMail Sends the email using the config defined
+// mail driver
 func SendMail(template, from, subject, info string, to string, data interface{}) {
 
 	message := mailgun.NewMessage(
@@ -20,18 +22,23 @@ func SendMail(template, from, subject, info string, to string, data interface{})
 		subject,
 		info,
 		to)
-	html := HtmlString(data, template)
+	html := HTMLString(data, template)
 
+	// selecting the mailing service
 	switch Config.Mail.Service {
 
 	case "dump":
-		{
+		{ // Dumps file in to the mail.log file
+			// Does not really send the actual email
+			// outside
 			file, _ := os.Open(path.Join(Config.StoragePath, "mail.log"))
 			file.WriteString(html)
 			file.Close()
 		}
+
 	case "mailgun":
-		{
+		{ // Sends the mail using the mailgun
+			// it uses the mailgun configurations for it
 			message.SetHtml(html)
 			var mg = mailgun.NewMailgun(Config.Mail.Domain, Config.Mail.Key, Config.Mail.PublicKey)
 			_, _, err := mg.Send(message)
@@ -39,8 +46,10 @@ func SendMail(template, from, subject, info string, to string, data interface{})
 				DefaultLogger.Error(err.Error())
 			}
 		}
+
 	case "elasticMail":
-		{
+		{ // Sends the email using the elasitmail
+			// uses the elastic mail configurations for it
 			mailClient := http.Client{
 				Timeout: time.Minute * 1,
 			}
@@ -76,7 +85,12 @@ func SendMail(template, from, subject, info string, to string, data interface{})
 				return
 			}
 
-			respJson, _ := ioutil.ReadAll(resp.Body)
+			respJSON, errReading := ioutil.ReadAll(resp.Body)
+			resp.Body.Close()
+			if errReading != nil {
+				DefaultLogger.Error(fmt.SprinterrReading.Error(), " During reading the Resposne of the elastic mail")
+				return
+			}
 			color.Yellow(string(respJson))
 			color.Green("mail sent with elastic mail")
 		}

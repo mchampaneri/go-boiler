@@ -5,16 +5,17 @@ import (
 	"log"
 )
 
-/* Logger Structure
-| Used by the logging system
-*/
+// Log Structure
+// Used by the logging system
 type Log struct {
 }
+
+// DefaultLogger is sington which 
+// is used for event & data logging purpose
 var DefaultLogger Log
 
-/* Logger Configurations and functions
- | DefaultLogger is the System Logger
- */
+// Logger Configurations and functions
+// DefaultLogger is the System Logger
 func (l *Log) Info(info string) {
 	f, err := os.OpenFile(Config.StoragePath+"logger.log", os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0644)
 	defer f.Close()
