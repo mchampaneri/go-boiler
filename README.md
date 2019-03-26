@@ -5,7 +5,7 @@ go-boiler is boiler plate for create websites and webapps using golang. It has s
 
 All libraries are choose by making performace and ease of in balance. You might find library that give higher performace then one used here, but may not be as much easy to use.
 
-**( Boiler plate is designe by keeping in mind that frontend developer has zero knowladge of golang )**
+**( Boiler plate is designed by keeping in mind that frontend developer has zero knowladge of golang )**
 
 
 ### Components
