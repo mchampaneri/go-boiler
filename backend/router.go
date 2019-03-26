@@ -50,7 +50,7 @@ func RegisterWebRoutes() {
 
 	http.Handle("/", mainrouter)
 
-	color.Yellow(" * Spinned PuberStreet Web Server on %s %s  ", Config.AppURL, Config.Port)
+	color.Yellow(" * Spinned Go-bioiler Web Server on %s %s  ", Config.AppURL, Config.Port)
 	logged_router := handlers.LoggingHandler(os.Stdout, mainrouter)
 	if Config.Env == "dev" {
 		http.ListenAndServe(Config.Port, handlers.CompressHandler(csrf.Protect([]byte("El0a6L8uqv"), csrf.Secure(false))(logged_router)))

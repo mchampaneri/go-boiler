@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -88,10 +89,10 @@ func SendMail(template, from, subject, info string, to string, data interface{})
 			respJSON, errReading := ioutil.ReadAll(resp.Body)
 			resp.Body.Close()
 			if errReading != nil {
-				DefaultLogger.Error(fmt.SprinterrReading.Error(), " During reading the Resposne of the elastic mail")
+				DefaultLogger.Error(fmt.Sprint(errReading.Error(), " During reading the Resposne of the elastic mail"))
 				return
 			}
-			color.Yellow(string(respJson))
+			color.Yellow(string(respJSON))
 			color.Green("mail sent with elastic mail")
 		}
 	}

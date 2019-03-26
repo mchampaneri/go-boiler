@@ -7,13 +7,12 @@ import (
 
 func main() {
 
-
 	//Loading the Config
 	loadAppConfig()
-	color.Yellow(" * %s : A Puberstreet Inc. Product ", Config.AppName)
+	color.Yellow(" * %s : Powred by go-boiler  ", Config.AppName)
 
 	initdb()
-	color.Green(" * %s Database on %s initiated ",Config.Database.DatabaseName, Config.Database.Driver)
+	color.Green(" * %s Database on %s initiated ", Config.Database.DatabaseName, Config.Database.Driver)
 	//
 	// Enforcing the goValidator over the models (Structs)
 	//

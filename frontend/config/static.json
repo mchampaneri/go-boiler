@@ -1,10 +1,6 @@
 {
   "pages":[
     {
-      "url":"/about",
-      "view":"about.html"
-    },
-    {
       "url":"/",
       "view":"index.html"
     }
