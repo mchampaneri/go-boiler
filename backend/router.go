@@ -11,7 +11,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-/* *0
+/**
  *  Registering the routes for the web
  */
 func RegisterWebRoutes() {

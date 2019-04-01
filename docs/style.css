@@ -1,0 +1,49 @@
+/*
+ * Comman css
+ */
+p {
+    font-size: 18px;
+}
+
+/*
+ * mobile first css
+ */
+
+.side-nav {
+    position: absolute;
+    left: -1000px;
+    top: 0;
+    height: 100%;
+    width: 300px;
+    background: #1b2733;
+    padding: 20px;
+}
+.content {
+    padding: 30px;
+}
+
+
+/*
+ * Desktop css
+ */
+@media screen and (min-width: 992px) {
+    .side-nav {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 300px;
+        background: #1b2733;
+        padding: 20px;
+    }
+    .content {
+        padding: 30px 260px 30px 340px;
+    }
+}
+
+
+ul.link-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
