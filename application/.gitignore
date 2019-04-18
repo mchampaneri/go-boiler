@@ -1,0 +1,4 @@
+/node_modules
+/*.bleve
+/public/*
+/storage/*

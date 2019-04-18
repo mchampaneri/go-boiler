@@ -1,0 +1,194 @@
+// TODO : add icon buttons + btn groups
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+@import url('https://fonts.googleapis.com/css?family=Material+Icons');
+
+$black: #000000;
+$white: #FFFFFF;
+$whitesmoke: #F5F5F5;
+$grey: #777777;
+$grey-dark: #444444;
+$blue-grey: #3F4C5C;
+$blue: #4793FF;
+$green: #29C672;
+$orange: #FFAE47;
+$red: #FF4747;
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  justify-content: center;
+  align-self: center;
+  padding: 0 1.25rem;
+  line-height: 2.125rem;
+  font-size: .875rem;
+  font-weight: 400;
+  text-align: center;
+  margin: .125rem;
+  
+  border-radius: .125rem;
+  border: 2px solid $blue-grey;
+  background-color: $blue-grey;
+  color: $white;
+  text-decoration: none;
+  transition: color .125s ease;
+  overflow: hidden;
+  cursor: pointer;
+    vertical-align: middle;
+  outline: none;
+  
+  &:before {
+    background-color: $white;
+    content: "";
+    display: flex;
+    transform: scale(1, 0);
+    transition: transform .25s ease;
+    transform-origin: 50% 100%;
+    position: absolute;
+    overflow: hidden;
+    border-radius: 1px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    //will-change: transform; //strange bug with right border
+    z-index: 0;
+  }
+  
+  span {
+    display: flex;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .icon {
+    line-height: 2.125rem;
+    font-size: 1.25rem;
+    margin: 0 .25rem 0 -.25rem;
+  }
+  
+  &:hover, &:active, &:focus {
+    color: $blue-grey;
+    
+    &:before {
+      transform: scale(1, 1);
+    }
+  }
+  
+  &.block {
+    align-self: stretch;
+    width: 100%;
+    flex: 1 1 auto;
+  }
+  
+  &.bordered {
+    background-color: transparent!important;
+    color: $blue-grey;
+    
+    &:before {
+      background-color: $blue-grey;
+    }
+    
+    &:hover, &:active, &:focus {
+      color: $white;
+    }
+  }
+  
+  &.rounded {
+    border-radius: 1.1875rem;
+  }
+  
+  &.hard {
+    border-radius: 0;
+  }
+}
+
+.btn {
+  &.blue {
+    background-color: $blue;
+    border-color: $blue;
+    color: $white;
+    
+    &:hover, &:active, &:focus {
+      color: $blue;
+    }
+  
+    &.bordered {
+      color: $blue;
+      
+      &:before {
+        background-color: $blue;
+      }
+      
+      &:hover, &:active, &:focus {
+        color: $white;
+      }
+    }
+  }
+  
+  &.green {
+    background-color: $green;
+    border-color: $green;
+    
+    &:hover, &:active, &:focus {
+      color: $green;
+    }
+    
+    &.bordered {
+      color: $green;
+    
+      &:before {
+        background-color: $green;
+      }
+      
+      &:hover, &:active, &:focus {
+        color: $white;
+      }
+    }
+  }
+  
+  &.orange {
+    background-color: $orange;
+    border-color: $orange;
+    
+    &:hover, &:active, &:focus {
+      color: $orange;
+    }
+    
+    &.bordered {
+      color: $orange;
+    
+      &:before {
+        background-color: $orange;
+      }
+      
+      &:hover, &:active, &:focus {
+        color: $white;
+      }
+    }
+  }
+  
+  &.red {
+    background-color: $red;
+    border-color: $red;
+    
+    &:hover, &:active, &:focus {
+      color: $red;
+    }
+    
+    &.bordered {
+      color: $red;
+    
+      &:before {
+        background-color: $red;
+      }
+      
+      &:hover, &:active, &:focus {
+        color: $white;
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "pages":[
+    {
+      "url":"/",
+      "view":"index.html"
+    }
+  ]
+}
