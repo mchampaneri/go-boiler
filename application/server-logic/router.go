@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/gorilla/csrf"
@@ -33,6 +34,9 @@ func registerWebRoutes() {
 	// Registring 404/Not Found Handler
 	mainrouter.NotFoundHandler = http.HandlerFunc(notFoundHandle)
 	http.Handle("/", mainrouter)
+
+	log.Println(Config.Port)
+
 	http.ListenAndServe(Config.Port,
 		handlers.CompressHandler(csrf.Protect([]byte("El0a6L8uqv"),
 			csrf.Secure(true))(mainrouter)))
