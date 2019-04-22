@@ -54,7 +54,7 @@ func View(w http.ResponseWriter, r *http.Request, data interface{}, viewName str
 		dataMap = data.(map[string]interface{})
 	}
 	vars := make(jet.VarMap)
-	dataMap["appURL"] = Config.AppURL
+	dataMap["config"] = Config
 	dataMap["token"] = csrf.Token(r)
 	dataMap["currentURL"] = r.URL.Path
 	if err = t.Execute(w, vars, dataMap); err != nil {
