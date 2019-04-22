@@ -9,8 +9,8 @@
 # Description:       Enable service provided by daemon.
 ### END INIT INFO
 
-dir="/home/appspot/mezone"
-cmd="./applinux"
+dir="your-path"
+cmd="your-command"
 user=“appspot”
 
 name=`basename $0`

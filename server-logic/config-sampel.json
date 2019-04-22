@@ -5,19 +5,5 @@
     "Port": "8080",
     "ViewPath": "./views",
     "StoragePath": "./storage",
-    "PublicPath": "./public",
-    "database": {
-        "DatabaseName": "Go-boiler",
-        "Driver": "boltDB",
-        "UserName": "-",
-        "Password": "-"
-    },
-    "DatabaseHost": "-",
-    "mail": {
-        "Service": "-",
-        "Domain": "-",
-        "Key": "-",
-        "PublicKey": "-",
-        "APIKey": "-"
-    }
+    "PublicPath": "./public"
 }

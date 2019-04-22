@@ -9,10 +9,16 @@ import (
 
 // Reading configurations
 // and loading static routes
-func loadAppConfig() {
+func loadAppConfig() error {
 
-	c, cerr := os.Open("./config/app.json")    // Reading Configuration file
+	c, cerr := os.Open("./config/app.json") // Reading Configuration file
+	if cerr != nil {
+		return cerr
+	}
 	s, serr := os.Open("./config/static.json") // Reading Static routes file
+	if serr != nil {
+		return serr
+	}
 
 	defer func() {
 		c.Close()
@@ -26,4 +32,5 @@ func loadAppConfig() {
 	staticRoutesDecoder.Decode(&StaticPages)
 
 	color.Green(" * Configurations Loaded SuccessFully ")
+	return nil
 }

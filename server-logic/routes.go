@@ -1,11 +1,24 @@
 package main
 
-import "github.com/gorilla/mux"
+import (
+	"fmt"
+	"net/http"
 
-func dynamicRoutes(router *mux.Router){
+	"github.com/gorilla/mux"
+)
 
-	router.HandleFunc("/register",registerUser)
-	router.HandleFunc("/users",allUsers)
-	router.HandleFunc("/login",loginUser)
+// dynamicRoutes requires route
+// and handling function for response.
+func dynamicRoutes(router *mux.Router) {
+	// router.HandleFunc("/example-route", handlingFunction())
+}
 
+// staticPagesLoader registers page to main router
+func staticPagesLoader(page *Page, nextroute *mux.Route) {
+	nextroute.Path(page.URL)
+	nextroute.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println(r.RequestURI, " ", w.Header(), page.View, page.URL)
+		View(w, r, nil, page.View)
+	})
+	return
 }

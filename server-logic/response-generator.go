@@ -1,23 +1,24 @@
+/*
+  | Response genreator is intended to provide the functionality
+  | that are necessary to render a response for
+  | incoming requests ...
+  | HTML response havily realies on Jet Templating engine ...
+*/
+
 package main
 
 import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 	"path/filepath"
 
 	"github.com/CloudyKit/jet"
-	"github.com/fatih/color"
 	"github.com/gorilla/csrf"
 )
-
-/*
-  | Render Package is intended to provide the functionality
-  | that are necessary to render a response for any
-  | in coming request
-*/
 
 var root, _ = os.Getwd()
 
@@ -33,10 +34,8 @@ func init() {
 // request
 func JSON(w http.ResponseWriter, data interface{}) {
 	response, err := json.Marshal(data)
-	DefaultLogger.Info("Json Rendered")
 	if err != nil {
-		DefaultLogger.Error("Error " + err.Error() + " occured during rendering Json Response")
-		color.Red(" - respnose-generator.go  Json : %s", err.Error())
+		log.Println("Failed to generate json ")
 	}
 	fmt.Fprint(w, string(response))
 }
@@ -44,46 +43,22 @@ func JSON(w http.ResponseWriter, data interface{}) {
 // View Returns a jet view in response of the in coming request
 // with the data supplied as parameter
 func View(w http.ResponseWriter, r *http.Request, data interface{}, viewName string) {
-	session, err := UserSession.Get(r, "mvc-user-session")
-	if err != nil || session.IsNew {
-		// Just Ignore
-	}
+
 	templateName := viewName
 	t, err := Jet.GetTemplate(templateName)
 	if err != nil {
-		DefaultLogger.Error("Error " + err.Error() + " occured during rendering View Response")
-		color.Red(" - respnose-generator.go  View : %s", err.Error())
+		log.Println("Failed to get template ")
 	}
 	dataMap := make(map[string]interface{})
 	if data != nil {
 		dataMap = data.(map[string]interface{})
 	}
 	vars := make(jet.VarMap)
-	dataMap["AppUrl"] = Config.AppURL
-	// vars.Set("Auth", "true")
-	if session.Values["auth"] == true {
-		dataMap["Auth"] = true
-		dataMap["Name"] = session.Values["name"]
-		dataMap["NickName"] = session.Values["nickname"]
-		dataMap["Email"] = session.Values["email"]
-		dataMap["ProfilePic"] = session.Values["profile_pic"]
-		dataMap["CoverPic"] = session.Values["cover_pic"]
-		if session.Values["active"] == true {
-			dataMap["Active"] = session.Values["active"]
-		}
-	}
-
-	dataMap["Message"] = session.Values["message"]
-	dataMap["Token"] = csrf.Token(r)
-	dataMap["Url"] = r.URL.Path
-
-	// Resetting the Session Message
-	session.Options.MaxAge = 0
-	session.Values["message"] = nil
-	session.Save(r, w)
+	dataMap["appURL"] = Config.AppURL
+	dataMap["token"] = csrf.Token(r)
+	dataMap["currentURL"] = r.URL.Path
 	if err = t.Execute(w, vars, dataMap); err != nil {
-		DefaultLogger.Error("Error " + err.Error() + "occured during executing View Render")
-		color.Red(" - respnose-generator.go  View  : %s", err.Error())
+		log.Println("Failed to execute view tepmlate ")
 	}
 }
 
@@ -95,13 +70,11 @@ func HTMLString(data interface{}, viewName string) string {
 	templateName := viewName
 	t, err := Jet.GetTemplate(templateName)
 	if err != nil {
-		DefaultLogger.Error("Error " + err.Error() + "occured during rendering View Response")
-		color.Red(" - respnose-generator.go  HtmlString : %s", err.Error())
+		log.Println("Failed to  get tempalte ")
 	}
 	vars := make(jet.VarMap)
 	if err = t.Execute(&html, vars, data); err != nil {
-		DefaultLogger.Error("Error " + err.Error() + "occured during executing View Render")
-		color.Red(" - respnose-generator.go  HtmlString : %s", err.Error())
+		log.Println("Failed to execute view tepmlate ")
 	}
 	return html.String()
 }

@@ -1,27 +1,16 @@
 package main
 
-import "github.com/fatih/color"
+import (
+	"log"
+)
 
 func main() {
 
-	// //Loading the Config
-	loadAppConfig()
-	color.Yellow(" * %s : Powred by go-boiler  ", Config.AppName)
+	if err := loadAppConfig(); err != nil {
+		log.Fatalln("Failed to load config ", err.Error())
+	}
+	log.Println("Success: Config loaded")
 
-	// if dbErr := initdb(); dbErr != nil {
-	// 	color.Red("* Database: failed %s ", dbErr.Error())
-	// 	return
-	// }
-
-	// // Enforcing the goValidator over the models (Structs)
-	// govalidator.SetFieldsRequiredByDefault(false)
-	// DefaultLogger = Log{}
-
-	// // Using BigCache as default cache
-	// BigCache, _ = initCache()
-
-	// // Loading the Routers for the web and api on their
-	// // mentioned ports
-	// //
-	// RegisterWebRoutes()
+	registerWebRoutes()
+	log.Println("Success: Routes loaded")
 }

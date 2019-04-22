@@ -1,0 +1,9 @@
+{
+    "Env": "Dev",
+    "AppName": "Go-Boiler",
+    "AppUrl": "http://localhost",
+    "Port": "8080",
+    "ViewPath": "./views",
+    "StoragePath": "./storage",
+    "PublicPath": "./public"
+}

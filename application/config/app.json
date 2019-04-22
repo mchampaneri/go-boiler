@@ -5,19 +5,5 @@
   "Port":":8081",
   "ViewPath": "view/",
   "StoragePath": "storage/",
-  "PublicPath": "public/",
-  "Database": {
-    "DatabaseName": "puberstreet",
-    "Driver": "boltDB",
-    "UserName": "",
-    "Password": "",
-    "DatabaseHost": ""
-  },
-  "Mail": {
-    "Service":"elasticMail",
-    "Domain": "",
-    "Key": "",
-    "PublicKey": "",
-    "APIKey":""
-  }
+  "PublicPath": "public/"
 }
