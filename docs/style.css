@@ -5,6 +5,10 @@ p {
     font-size: 18px;
 }
 
+p{
+    text-align: justify;
+}
+
 /*
  * mobile first css
  */
@@ -22,13 +26,16 @@ p {
     padding: 30px;
 }
 
+.section {
+    margin: 0 0 50px 0;
+}
 
 /*
  * Desktop css
  */
 @media screen and (min-width: 992px) {
     .side-nav {
-        position: absolute;
+        position: fixed;
         left: 0;
         top: 0;
         height: 100%;

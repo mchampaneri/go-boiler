@@ -6,31 +6,18 @@
     </title>
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
     <link rel="stylesheet" href="./style.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" />
 </head>
 
 <body>
 
-    <div class="side-nav">
-        <span class="label label-rounded label-primary">Go-Boiler plate</span>
-        <hr>
+    <div class="side-nav" style="background-color:#2f3942">
         <ul class="nav">
             <li class="nav-item">
-                <a href="/" class="active">Introduction</a>
+                <a href="#about" class="active">Introductions</a>
             </li>
             <li class="nav-item">
-                <a href="#">Components</a>
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a href="#">Frontend (UI)</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#">Backend (Server & Logic)</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <a href="#">Getting Started</a>
+                <a href="#features" class="active">Features</a>
             </li>
 
         </ul>
@@ -38,23 +25,163 @@
 
     <div class="content">
 
-        <h1> Introduction </h1>
+        <div id="about" class="section">
+            <h4> Go-Boiler ? </h4>
+            <p>
+                Go-Boiler is a combination of existing libraies and hand crafted function required to create
+                website/webapps. Its not a full fledge framework having orm or caching or even its own routing.
+            </p>
+            <p>
+                Go-boiler is built-on top if some of the best golang libraries is out there ( with certain wrapper
+                functions over it to make it more fancy).
+            </p>
 
-        <p>
-            Go-boiler plate is created using combining existing (golang & node) libraries out there. Libraries are not
-            choosen for best performance, instead they are selected by balancing between performance and ease of use and
-            learning curve.
-        </p>
+        </div>
 
-        <p>
-            It mostly inspired from laravel framework ( php ). Event it uses same laravel-mix for frontend developement and preprocess js and css.
-        </p>
+        <div id="features" class="section">
+            <h4> Features </h4>
+            <p>
+                Go-boiler is built-on top of existing libraries, but still it has certains thing those are original. For
+                example static routing and response generator.
+            </p>
+            <ul>
+                <li> Routing
+                    <ul>
+                        <li> Static Routes </li>
+                        <li> Dynamic Routes</li>
+                    </ul>
+                </li>
+                <li> Response Rendering
+                    <ul>
+                        <li> HTML Rendering </li>
+                        <li> Text Rendering </li>
+                        <li> JSON Response</li>
+                    </ul>
+                </li>
+                <li> CSRF Security </li>
+            </ul>
+        </div>
 
-        <ul class="link-list">
-            <li><a href="#" >Getting Started Now !</a></li>
-            <li><a href="./frontend.html" >Frontend Libraries</a></li>
-            <li><a href="#" >Backend Libraries</a></li>
-        </ul>
+        <div id="installation" class="section">
+            <h4> Installation </h4>
+            <br>
+            <p> You need source code of go-boiler in your machine. You can either clone the project from github or
+                download source code.</p>
+            <p> <i> For clonning project </i></br>
+                <code> $ git clone https://www.github.com/mchampaneri/go-boiler.git</code>
+            </p>
+            <p>
+                Once you have source code in your machine, you are ready to statr developement work.
+            </p>
+
+        </div>
+
+        <div id="getting-started" class="section">
+            <h4> Getting Started </h4>
+            <p>
+                Before you can see your appliaction you have to build server for your appliaction. Once you build server
+                you will be able to see sample page.
+            </p>
+            <ul> <b> Build server </b>
+                <li> Open Terminal / CMD </li>
+                <li> Goto root folder of your project <br> <code>$ application\ :</code></li>
+                <li> Travers to server-logic folder <br> <code>$ application\server-logic\ :</code></li>
+                <li> Generate server in parent fodler <br>
+                    <code>$ appliaction\server-logic\ : go build -o ../xerver </code> </li>
+            </ul>
+
+            <ul><b> Start server </b>
+                <li> Open Terminal / CMD </li>
+                <li> Goto root folder of your project <br> <code>$ application\ :</code></li>
+                <li> Start xerver executable <br> <code>$ appliactions\: ./xerver</code></li>
+            </ul>
+
+            <p> After starting server open <a href="http://localhost:8081/">http://localhost:8081</a> in browser. You
+                should see welcome page.</p>
+        </div>
+
+        <div id="folder-structure" class="section">
+            <h4> Folder Structure </h4>
+            <ul>
+                <li> <i class="fas fa-folder"></i> application ( Root folder )
+                    <!-- Config folder -->
+                    <ul>
+                        <li> <i class="fas fa-folder"></i> config
+                            <ul>
+                                <li> <i class="fas fa-file"></i> app.json <span class="label">contains application
+                                        configurations </span> </li>
+                                <li> <i class="fas fa-file"></i> static.json <span class="label">contains list of static
+                                        routes</span> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- Config folder /-->
+                </li>
+                <!-- public folder -->
+                <li> <i class="fas fa-folder"></i> public </li>
+                <!-- public folder /-->
+                <!-- resource folder -->
+                <li> <i class="fas fa-folder"></i> resource
+                    <ul>
+                        <li> <i class="fas fa-folder"></i> js </li>
+                        <li> <i class="fas fa-folder"></i> sass </li>
+                    </ul>
+                </li>
+                <!-- resource folder /-->
+                <!-- server-logic folder -->
+                <li><i class="fa-folder fas"></i> server-logic ( All gocode & Server logic)
+                    <ul>
+                        <li> <i class="fas fa-file"></i> app.go</li>
+                        <li> <i class="fas fa-file"></i> boostrap.go</li>
+                        <li> <i class="fas fa-file"></i> config.go</li>
+                        <li> <i class="fas fa-file"></i> helping-functions.go <span class="label">custome helping
+                                function definations</span></li>
+                        <li> <i class="fas fa-file"></i> response-generator.go <span class="label">response generator
+                                functions</span></li>
+                        <li> <i class="fas fa-file"></i> router.go</li>
+                        <li> <i class="fas fa-file"></i> routes.go <span class="label">contains dynamic routes</span>
+                        </li>
+                    </ul>
+                </li>
+                <!-- server-logic folder /-->
+                <!-- storage folder-->
+                <li>
+                    <i class="fas fa-folder"></i> storage
+                </li>
+                <!-- view folder-->
+                <li>
+                    <i class="fas fa-folder"></i> view
+                </li>
+                <!-- view folder /-->
+            </ul>
+        </div>
+
+        <div id="routing" class="section">
+            <h4> Routing </h4>
+            <p> Go-boiler comes with two kind of routing.</p>
+            <ul>
+                <li> Dynamic Routing </li>
+                <li> Static Routing </li>
+            </ul>
+
+            <h5> Dynamic Routing </h5>
+            <p> Dynmic routing is routing you specify inside <code> dynamicRoutes() </code> <b> routes.go </b> file </p>
+            <p>
+                <ul>
+                    <li> <i class="fas fa-folder"></i> application
+                        <ul>
+                            <li>
+                                <i class="fas fa-folder"></i> server-logic
+                                <ul>
+                                    <li> <i class="fas fas-file"></i> routes.go </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </div>
+
 
     </div>
 
