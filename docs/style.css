@@ -9,6 +9,13 @@ p{
     text-align: justify;
 }
 
+ul{
+    list-style: none;
+}
+
+li{
+    list-style: none;
+}
 /*
  * mobile first css
  */
@@ -27,7 +34,7 @@ p{
 }
 
 .section {
-    margin: 0 0 50px 0;
+    margin: 0 0 90px 0;
 }
 
 /*
