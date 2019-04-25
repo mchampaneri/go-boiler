@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/hybrid.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
 
 
@@ -33,9 +33,14 @@
             <h4> Go-Boiler ? </h4>
             <p>
                 Go-boiler is crafted by combining existing golang libraries. It's not a framework. It's a boliler-plate
-                to give you a head start on your project. Its gives you basic folder structure and essentail functions
+                to give you a head start on your project. Its gives you basic folder structure and essentail ( and minimal ) functions
                 required in website/ webapp.
             </p>
+
+            <p class="text-center">
+                <i><b>Less restriction, more freedom</b></i>
+             </p>
+
             <p>
                 According to golang philosophy you don't need framework, instead of using framework they says integrate
                 libraries according to your need. This boiler-plate follow the same philosophy and so it has just
@@ -68,6 +73,9 @@
                 </li>
                 <li>
                     CSRF <i>(Gorilla/csrf)</i>
+                </li>
+                <li class="text-secondary">
+                    JWT Authentication
                 </li>
             </ul>
         </div>
@@ -196,10 +204,10 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="columns">
-                            <div class="col-6">
+                            <div class="col-6 col-sm-12" style="padding:30px;">
                                     <p> http://yoursite-name.domain/<b>about.html</b></p>
                                     <p> Path to the view file ( Relative path to view folder )
-
+                                                <br>
                                                 <i class="fas fa-folder"></i> view
                                                 <ul>
                                                     <li><i class="fas fa-file"></i> index.html</li>
@@ -211,7 +219,7 @@
                                                 </ul>
                                             </p>
                             </div>
-                            <div class="col-6 text-center">
+                            <div class="col-6 col-sm-12 text-center"  style="padding:30px;">
                                 <p>All static routes has to be defined inside static.json as pair of URL and page.</p>
                                 <p>For example we have index.html page and about.html page with "/" and "/about" route. For those route static.json and folder arrangment of files are shown in example.</p>
                             </div>
@@ -231,25 +239,163 @@
 
             </p>
         </div>
-        <div class="dynamic-routing">
+
+        <div id="dynamic-routing" class="section">
             <h4> Dynamic Routing </h4>
             <p> Dynmic routing is routing you specify inside <code> dynamicRoutes() </code> <b> routes.go </b> file </p>
             <p>
-                <ul>
-                    <li> <i class="fas fa-folder"></i> application
-                        <ul>
-                            <li>
-                                <i class="fas fa-folder"></i> server-logic
-                                <ul>
-                                    <li> <i class="fas fas-file"></i> routes.go </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+                <div class="bg-gray card">
+                    <div class="card-body">
+                        <pre>
+                            <code>
+                            // dynamicRoutes requires route
+                            // and handling function for response.
+                            func dynamicRoutes(router *mux.Router) {
+
+                                router.HandleFunc("/example-route",
+                                        func(w http.ResponseWriter, r *http.Request){
+                                        // rendering view
+                                        data := make(map[string]interface)
+                                        data["user"] = "john"
+                                        View(w,r, data, "user.html")
+                                })
+
+                            }
+                            </code>
+                        </pre>
+                        <p><i class="fas fa-file"></i> routes.go</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="columns">
+                            <div class="col-6 col-sm-12">
+                                    <ul>
+                                            <li> <i class="fas fa-folder"></i> application
+                                                <ul>
+                                                    <li>
+                                                        <i class="fas fa-folder"></i> server-logic
+                                                        <ul>
+                                                            <li> <i class="fas fas-file"></i> routes.go </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                            </div>
+                            <div class="col-6 col-sm-12">
+                                <p> You have to register every dynamic routes inside dynamicRoutes functions. To get dynamic routes in effect you need to recomile whole server again.</p>
+                                <p> Dynamic routes can carry render time data with them using render function in handler. As shown in example we have passed render time data to View function.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </p>
         </div>
 
+        <div id="render-functions" class="section">
+            <h4> Rendering Functions </h4>
+            <br>
+
+            <h5> View </h5>
+            <p> View function expected to be used in routes. View function processs input paramerter with selected view template and returns processed view.</p>
+            <div class="card">
+                <div class="card-body">
+                    <p> View function required 4 paramter in order defiened as below</p>
+                    <table class="table table-hover">
+                        <tr> <td> http.ResponseWriter (w) </td>
+                             <td> Where output has to be written</td>
+                            </tr>
+                        <tr> <td> *http.Request (r) </td>
+                             <td> request object </td>
+                        </tr>
+                        <tr> <td> map[string]interface (dataMap) </td>
+                             <td> map of data to be passed to view </td>
+                        </tr>
+                        <tr> <td> string ('site/about.html') </td>
+                             <td> Path to the view file ( relative from <i class="fas fa-folder"></i> view )</td>
+                        </tr>
+                    </table>
+                    <pre>
+                        <code>
+                            View(w, r, dataMap, "site/about.html")
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <br>
+
+            <h5> JSON </h5>
+            <p> JSON function expected to be used in routes. JSON function returns data as json</p>
+            <div class="card">
+                <div class="card-body">
+                    <p> JSON function required 2 paramter in order defiened as below</p>
+                    <table class="table table-hover">
+                        <tr> <td> http.ResponseWriter (w) </td>
+                             <td> Where output has to be written</td>
+                            </tr>
+                        <tr> <td> interface (data) </td>
+                             <td> data to be passed as json </td>
+                        </tr>
+                    </table>
+                    <pre>
+                        <code>
+                            JSON(w, data)
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <br>
+
+            <h5> HTMLString </h5>
+            <p> HTMLString function is similar to View function. Differance is that  View function returns http response after execution. While HTMLString returns string of generated html instead of sending it as http response.</p>
+            <p> Example of use,</p>
+            <p> Mostly email service provider accept html as input for mail. You can use HTMLString function to generate HTML for you mail.</p>
+            <div class="card">
+                <div class="card-body">
+                    <p> JSON function required 2 paramter in order defiened as below</p>
+                    <table class="table table-hover">
+                        <tr> <td> interface (data) </td>
+                                <td> data to be passed as json </td>
+                        </tr>
+                        <tr> <td> string ('mails/invitation.html') </td>
+                             <td> Where output has to be written</td>
+                        </tr>
+                    </table>
+                    <pre>
+                        <code>
+                            HTMLString(w, 'mails/invitation.html')
+                        </code>
+                    </pre>
+
+                    <p> Example </p>
+                    <pre>
+                        <code>
+    func SendMail(template, from, subject, info string, to string, data interface{}) {
+        message := mailgun.NewMessage(
+            from,
+            subject,
+            info,
+            to)
+        html := HTMLString(data, template)
+        // Sends the mail using the mailgun
+        // it uses the mailgun configurations for it
+        message.SetHtml(html)
+        var mg = mailgun.NewMailgun(Config.Mail.Domain, Config.Mail.Key, Config.Mail.PublicKey)
+                _, _, err := mg.Send(message)
+                if err != nil {
+                    DefaultLogger.Error(err.Error())
+                }
+        }
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+        </div>
 
     </div>
 
