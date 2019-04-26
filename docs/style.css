@@ -1,6 +1,16 @@
 /*
  * Comman css
  */
+a{
+    color:#59a0c9;
+}
+a:active{
+    color:#59a0c9;
+}
+a:visited{
+    color:#59a0c9;
+}
+
 p {
     font-size: 18px;
 }
@@ -16,6 +26,11 @@ ul{
 li{
     list-style: none;
 }
+h4{
+    padding:10px 20px;
+    border-left: 2px solid #e4e26a
+}
+
 /*
  * mobile first css
  */
