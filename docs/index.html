@@ -200,16 +200,16 @@
                         <div class="card-body">
                             <pre class="">
                            <code>
-                            {
-                              "pages":[{
-                                      "url":"/",
-                                      "view":"index.html"
-                                     },
-                                     {
-                                      "url":"/about",
-                                      "view":"site/about.html"
-                                    }]
-                            }
+        {
+          "pages":[{
+                  "url":"/",
+                  "view":"index.html"
+                 },
+                 {
+                  "url":"/about",
+                  "view":"site/about.html"
+                }]
+        }
                             </code>
                         </pre>
                             <p><i class="fas fa-file"></i> static.json</p>
@@ -262,19 +262,17 @@
                     <div class="card-body">
                         <pre>
                             <code>
-                            // dynamicRoutes requires route
-                            // and handling function for response.
-                            func dynamicRoutes(router *mux.Router) {
+        // dynamicRoutes requires route
+        // and handling function for response.
+        func dynamicRoutes(router *mux.Route
+            router.HandleFunc("/example-route",
+                    func(w http.ResponseWriter, r *http.Request){
+                    // rendering view
+                    data := make(map[string]interface)
+                    data["user"] = "john"
+                    View(w,r, data, "user.html")
 
-                                router.HandleFunc("/example-route",
-                                        func(w http.ResponseWriter, r *http.Request){
-                                        // rendering view
-                                        data := make(map[string]interface)
-                                        data["user"] = "john"
-                                        View(w,r, data, "user.html")
-                                })
-
-                            }
+        }
                             </code>
                         </pre>
                         <p><i class="fas fa-file"></i> routes.go</p>
@@ -333,9 +331,30 @@
                     </table>
                     <pre>
                         <code>
-                            View(w, r, dataMap, "site/about.html")
+        View(w, r, dataMap, "site/about.html")
                         </code>
                     </pre>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                            <p>Example</p>
+                        <pre>
+                            <code>
+        // dynamicRoutes requires route
+        // and handling function for response.
+        func dynamicRoutes(router *mux.Rout
+            router.HandleFunc("/example-route",
+                    func(w http.ResponseWriter, r *http.Request){
+                    // rendering view
+                    data := make(map[string]interface)
+                    data["user"] = "john"
+                    View(w,r, data, "user.html")
+            })
+        }
+                            </code>
+                        </pre>
+                        <p><i class="fas fa-file"></i> routes.go</p>
+                    </div>
                 </div>
             </div>
 
@@ -356,9 +375,31 @@
                     </table>
                     <pre>
                         <code>
-                            JSON(w, data)
+        JSON(w, data)
                         </code>
                     </pre>
+                </div>
+                <div class="card">
+
+                    <div class="card-body">
+                        <p>Example</p>
+                        <pre>
+                            <code>
+        // dynamicRoutes requires route
+        // and handling function for response.
+        func dynamicRoutes(router *mux.Rout
+            router.HandleFunc("/example-route",
+                    func(w http.ResponseWriter, r *http.Request){
+                    // rendering view
+                    data := make(map[string]interface)
+                    data["user"] = "john"
+                    JSON(w, data)
+            })
+        }
+                            </code>
+                        </pre>
+                        <p><i class="fas fa-file"></i> routes.go</p>
+                    </div>
                 </div>
             </div>
 
@@ -381,7 +422,7 @@
                     </table>
                     <pre>
                         <code>
-                            HTMLString(w, 'mails/invitation.html')
+        HTMLString(w, 'mails/invitation.html')
                         </code>
                     </pre>
 
