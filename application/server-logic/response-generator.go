@@ -56,7 +56,7 @@ func View(w http.ResponseWriter, r *http.Request, data interface{}, viewName str
 	vars := make(jet.VarMap)
 	dataMap["config"] = Config
 	dataMap["token"] = csrf.Token(r)
-	dataMap["currentURL"] = r.URL.Path
+	dataMap["currentPATH"] = r.URL.Path
 	if err = t.Execute(w, vars, dataMap); err != nil {
 		log.Println("Failed to execute view tepmlate ")
 	}

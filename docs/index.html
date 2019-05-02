@@ -18,7 +18,7 @@
     <div class="side-nav" style="background-color:#2f3942">
         <ul class="nav">
             <li class="nav-item">
-                <a href="#about" >Introductions</a>
+                <a href="#about">Introductions</a>
             </li>
             <li class="nav-item">
                 <a href="#features">Features</a>
@@ -41,6 +41,9 @@
             <li class="nav-item">
                 <a href="#render-functions">Render Functions</a>
             </li>
+            <li class="nav-item">
+                <a href="#render-time-variables">Render Time Variables</a>
+            </li>
 
         </ul>
     </div>
@@ -49,33 +52,29 @@
         <h1 class="text-center">
             Documentation
         </h1>
-        <div id="about" class="section">
-            <h4> <a href="#about"> Go-Boiler </a> </h4>
-            <p>
-              Go-boiler is desigend for creating webapps & websites with golang.
-            </p>
 
+        <div id="about" class="section">
+            <h4 class="topic"> <a href="#about"> Go-Boiler </a> </h4>
             <p>
-                According to golang philosophy you don't need framework,<blockquote> instead of using framework they says integrate
-                libraries according to your need.</blockquote> This boiler-plate follow the same philosophy and so it has just
-                provided routing and response rendering. Everything else is left on developer ( Yes! that's you )
+                Go-boiler is desigend for creating webapps & websites with golang.<br>According to golang philosophy you don't need framework.<blockquote> <i> Instead of using framework, integrate libraries according to your need.</i></blockquote> Go-boiler provides routing and response rendering.
+                Everything else is left on developer ( Yes! that's you )
                 including database.
             </p>
 
         </div>
 
         <div id="features" class="section">
-            <h4><a href="#features">Features</a></h4>
+            <h4 class="topic"><a href="#features">Features</a></h4>
             <p>
-                Go-boiler is built-on top of existing libraries. It gives very basic facilites need for website/ webapps
-                those are listed below.
+                Go-boiler is built-on top of existing libraries. It provider very basic facilites, wrapper functions and
+                structure for website/ webapps.
             </p>
             <ul>
                 <li> Web Server <i>(Golang net/http)</i> </li>
                 <li> Routing <i>(Gorilla Mux)</i>
                     <ul>
                         <li> Static Routes </li>
-                        <li> Dynamic Routes</li>
+                        <li> Dynamic Routes </li>
                     </ul>
                 </li>
                 <li> Response Rendering <i>(Cloudykit/jet & enocde/json)</i>
@@ -89,17 +88,17 @@
                     CSRF <i>(Gorilla/csrf)</i>
                 </li>
                 <li class="text-secondary">
-                    JWT Authentication
+                    JWT Authentication ( In process )
                 </li>
             </ul>
         </div>
 
         <div id="installation" class="section">
-            <h4><a href="#installation">Installation</a></h4>
+            <h4 class="topic"><a href="#installation">Installation</a></h4>
             <br>
-            <p> You need source code of go-boiler in your machine. You can either clone the project from github or
-                download source code.</p>
-            <p> <i> For clonning project </i></br>
+            <p>You can either clone the project from github or
+                download source code.<br>
+                 <i> For clonning project </i></br>
                 <code> $ git clone https://www.github.com/mchampaneri/go-boiler.git</code>
             </p>
             <p>
@@ -108,9 +107,9 @@
         </div>
 
         <div id="folder-structure" class="section">
-            <h4><a href="#folder-structure">Folder Structure</a></h4>
+            <h4 class="topic"><a href="#folder-structure">Folder Structure</a></h4>
             <ul>
-                <li> <i class="fas fa-folder"></i> application ( Root folder )
+                <li> <i class="fas fa-folder"></i> application (Root Folder)
                     <!-- Config folder -->
                     <ul>
                         <li> <i class="fas fa-folder"></i> config
@@ -125,12 +124,16 @@
                     <!-- Config folder /-->
                 </li>
                 <!-- public folder -->
-                <li> <i class="fas fa-folder"></i> public </li>
+                <li> <i class="fas fa-folder"></i> public <span class="label"> Public Folder </span> </li>
                 <!-- public folder /-->
                 <!-- resource folder -->
                 <li> <i class="fas fa-folder"></i> resource
                     <ul>
-                        <li> <i class="fas fa-folder"></i> js </li>
+                        <li><i class="fas fa-folder"></i> js
+                                <ul>
+                                <li> <i class="fas fa-file"></i> index.js <span class="label"> webpack entry file</span>
+                                </li>
+                            </ul>
                         <li> <i class="fas fa-folder"></i> sass </li>
                     </ul>
                 </li>
@@ -141,7 +144,7 @@
                         <li> <i class="fas fa-file"></i> app.go</li>
                         <li> <i class="fas fa-file"></i> boostrap.go</li>
                         <li> <i class="fas fa-file"></i> config.go</li>
-                        <li> <i class="fas fa-file"></i> helping-functions.go <span class="label">custome helping
+                        <li> <i class="fas fa-file"></i> helping-functions.go <span class="label">custom helping
                                 function definations</span></li>
                         <li> <i class="fas fa-file"></i> response-generator.go <span class="label">response generator
                                 functions</span></li>
@@ -157,14 +160,14 @@
                 </li>
                 <!-- view folder-->
                 <li>
-                    <i class="fas fa-folder"></i> view
+                    <i class="fas fa-folder"></i> view <span class="label">Default root folder for views</span>
                 </li>
                 <!-- view folder /-->
             </ul>
         </div>
 
         <div id="getting-started" class="section">
-            <h4> <a href="#getting-started">Getting Started </a></h4>
+            <h4 class="topic"> <a href="#getting-started">Getting Started </a></h4>
             <p>
                 You have to build and start application server for your application to start your application.
             </p>
@@ -191,14 +194,14 @@
 
         <div id="static-routing" class="section">
 
-            <h4><a href="#static-routing">Static Routing</a> </h4>
+            <h4 class="topic"><a href="#static-routing">Static Routing</a> </h4>
             <p>
                 When you open URL <a href="http://localhost:8081/">localhost:8081</a>. You get welcome page. It's
                 actully comming from static routes mapping. <br>
 
                 <div class="bg-gray card">
-                        <div class="card-body">
-                            <pre class="">
+                    <div class="card-body">
+                        <pre class="">
                            <code>
         {
           "pages":[{
@@ -212,30 +215,31 @@
         }
                             </code>
                         </pre>
-                            <p><i class="fas fa-file"></i> static.json</p>
-                        </div>
+                        <p><i class="fas fa-file"></i> static.json</p>
                     </div>
+                </div>
                 <div class="card">
                     <div class="card-body">
                         <div class="columns">
                             <div class="col-6 col-sm-12" style="padding:30px;">
-                                    <p> http://yoursite-name.domain/<b>about.html</b></p>
-                                    <p> Path to the view file ( Relative path to view folder )
-                                                <br>
-                                                <i class="fas fa-folder"></i> view
-                                                <ul>
-                                                    <li><i class="fas fa-file"></i> index.html</li>
-                                                    <li><i class="fas fa-folder"></i> site
-                                                        <ul>
-                                                            <li><i class="fas fa-file"></i> about.html</li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </p>
+                                <p> http://yoursite-name.domain/<b>about.html</b></p>
+                                <p> Path to the view file ( Relative path to view folder )
+                                    <br>
+                                    <i class="fas fa-folder"></i> view
+                                    <ul>
+                                        <li><i class="fas fa-file"></i> index.html</li>
+                                        <li><i class="fas fa-folder"></i> site
+                                            <ul>
+                                                <li><i class="fas fa-file"></i> about.html</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </p>
                             </div>
-                            <div class="col-6 col-sm-12 text-center"  style="padding:30px;">
+                            <div class="col-6 col-sm-12 text-center" style="padding:30px;">
                                 <p>All static routes has to be defined inside static.json as pair of URL and page.</p>
-                                <p>For example we have index.html page and about.html page with "/" and "/about" route. For those route static.json and folder arrangment of files are shown in example.</p>
+                                <p>For example we have index.html page and about.html page with "/" and "/about" route.
+                                    For those route static.json and folder arrangment of files are shown in example.</p>
                             </div>
                         </div>
 
@@ -255,7 +259,7 @@
         </div>
 
         <div id="dynamic-routing" class="section">
-            <h4><a href="#dynamic-routing">Dynamic Routing</a></h4>
+            <h4 class="topic"><a href="#dynamic-routing">Dynamic Routing</a></h4>
             <p> Dynmic routing is routing you specify inside <code> dynamicRoutes() </code> <b> routes.go </b> file </p>
             <p>
                 <div class="bg-gray card">
@@ -282,22 +286,24 @@
                     <div class="card-body">
                         <div class="columns">
                             <div class="col-6 col-sm-12">
-                                    <ul>
-                                            <li> <i class="fas fa-folder"></i> application
+                                <ul>
+                                    <li> <i class="fas fa-folder"></i> application
+                                        <ul>
+                                            <li>
+                                                <i class="fas fa-folder"></i> server-logic
                                                 <ul>
-                                                    <li>
-                                                        <i class="fas fa-folder"></i> server-logic
-                                                        <ul>
-                                                            <li> <i class="fas fas-file"></i> routes.go </li>
-                                                        </ul>
-                                                    </li>
+                                                    <li> <i class="fas fas-file"></i> routes.go </li>
                                                 </ul>
                                             </li>
                                         </ul>
+                                    </li>
+                                </ul>
                             </div>
                             <div class="col-6 col-sm-12">
-                                <p> You have to register every dynamic routes inside dynamicRoutes functions. To get dynamic routes in effect you need to recomile whole server again.</p>
-                                <p> Dynamic routes can carry render time data with them using render function in handler. As shown in example we have passed render time data to View function.</p>
+                                <p> You have to register every dynamic routes inside dynamicRoutes functions. To get
+                                    dynamic routes in effect you need to recomile whole server again.</p>
+                                <p> Dynamic routes can carry render time data with them using render function in
+                                    handler. As shown in example we have passed render time data to View function.</p>
                             </div>
                         </div>
                     </div>
@@ -307,26 +313,31 @@
         </div>
 
         <div id="render-functions" class="section">
-            <h4><a href="#render-functions"> Rendering Functions </a></h4>
+            <h4 class="topic"><a href="#render-functions"> Rendering Functions </a></h4>
             <br>
 
             <h5> View </h5>
-            <p> View function expected to be used in routes. View function processs input paramerter with selected view template and returns processed view.</p>
+            <p> View function expected to be used in routes. View function processs input paramerter with selected view
+                template and returns processed view.</p>
             <div class="card">
                 <div class="card-body">
                     <p> View function required 4 paramter in order defiened as below</p>
                     <table class="table table-hover">
-                        <tr> <td> http.ResponseWriter (w) </td>
-                             <td> Where output has to be written</td>
-                            </tr>
-                        <tr> <td> *http.Request (r) </td>
-                             <td> request object </td>
+                        <tr>
+                            <td> http.ResponseWriter (w) </td>
+                            <td> Where output has to be written</td>
                         </tr>
-                        <tr> <td> map[string]interface (dataMap) </td>
-                             <td> map of data to be passed to view </td>
+                        <tr>
+                            <td> *http.Request (r) </td>
+                            <td> request object </td>
                         </tr>
-                        <tr> <td> string ('site/about.html') </td>
-                             <td> Path to the view file ( relative from <i class="fas fa-folder"></i> view )</td>
+                        <tr>
+                            <td> map[string]interface (dataMap) </td>
+                            <td> map of data to be passed to view </td>
+                        </tr>
+                        <tr>
+                            <td> string ('site/about.html') </td>
+                            <td> Path to the view file ( relative from <i class="fas fa-folder"></i> view )</td>
                         </tr>
                     </table>
                     <pre>
@@ -337,7 +348,7 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                            <p>Example</p>
+                        <p>Example</p>
                         <pre>
                             <code>
         // dynamicRoutes requires route
@@ -366,11 +377,13 @@
                 <div class="card-body">
                     <p> JSON function required 2 paramter in order defiened as below</p>
                     <table class="table table-hover">
-                        <tr> <td> http.ResponseWriter (w) </td>
-                             <td> Where output has to be written</td>
-                            </tr>
-                        <tr> <td> interface (data) </td>
-                             <td> data to be passed as json </td>
+                        <tr>
+                            <td> http.ResponseWriter (w) </td>
+                            <td> Where output has to be written</td>
+                        </tr>
+                        <tr>
+                            <td> interface (data) </td>
+                            <td> data to be passed as json </td>
                         </tr>
                     </table>
                     <pre>
@@ -406,18 +419,23 @@
             <br>
 
             <h5> HTMLString </h5>
-            <p> HTMLString function is similar to View function. Differance is that  View function returns http response after execution. While HTMLString returns string of generated html instead of sending it as http response.</p>
+            <p> HTMLString function is similar to View function. Differance is that View function returns http response
+                after execution. While HTMLString returns string of generated html instead of sending it as http
+                response.</p>
             <p> Example of use,</p>
-            <p> Mostly email service provider accept html as input for mail. You can use HTMLString function to generate HTML for you mail.</p>
+            <p> Mostly email service provider accept html as input for mail. You can use HTMLString function to generate
+                HTML for you mail.</p>
             <div class="card">
                 <div class="card-body">
                     <p> JSON function required 2 paramter in order defiened as below</p>
                     <table class="table table-hover">
-                        <tr> <td> interface (data) </td>
-                                <td> data to be passed as json </td>
+                        <tr>
+                            <td> interface (data) </td>
+                            <td> data to be passed as json </td>
                         </tr>
-                        <tr> <td> string ('mails/invitation.html') </td>
-                             <td> Where output has to be written</td>
+                        <tr>
+                            <td> string ('mails/invitation.html') </td>
+                            <td> Where output has to be written</td>
                         </tr>
                     </table>
                     <pre>
@@ -452,11 +470,34 @@
 
         </div>
 
+        <div id="render-time-variables" class="section">
+            <h4 class="topic"><a href="##render-time-variables">Render Time Variables </a></h4>
+
+            <p> Go-boiler uses Cloudykit/JetTemplating enginer for rendering view and generating html string. Go-boiler injects certain render time variables to template.</p>
+            <p> Here is the list of varaibles currenlty available. </p>
+                <table class="table table-hover">
+                    <tr>
+                        <td>config</td>
+                        <td>config object defined in app.json</td>
+                    </tr>
+                    <tr>
+                        <td>token</td>
+                        <td>CSRF token value</td>
+                    </tr>
+                    <tr>
+                        <td>currentPATH</td>
+                        <td>path of currently visible page</td>
+                    </tr>
+                </table>
+
+        </div>
+
         <div class="footer">
-                <p class="text-gray">
+            <p class="text-gray">
                 <a href="https://github.com/mchampaneri/go-boiler/">Github</a>
                 . <a href="https://www.mchampaneri.in">Blog</a></p>
-                <p> Designed by <b><i><a href="https://www.linkedin.com/in/manish-champaneri-7b926095/">Manish Champaneri</a></i></b> </p>
+            <p> Designed by <b><i><a href="https://www.linkedin.com/in/manish-champaneri-7b926095/">Manish
+                            Champaneri</a></i></b> </p>
         </div>
 
     </div>
