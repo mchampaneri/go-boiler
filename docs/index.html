@@ -9,16 +9,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/hybrid.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
 
 <body>
 
-    <div class="side-nav" style="background-color:#2f3942">
+    <div class="side-nav" id="sidebar" style="background-color:#2f3942">
         <ul class="nav">
             <li class="nav-item">
-                <h5 style="color:#fff; text-align: center;">Go-boiler</h5>
+                <h5 style="color:#fff; text-align: center;">
+                        <span class="show-md">
+                                Go-boiler  <i class="fas fa-times fa-md pull-right" onclick="toggleSidebar()"></i>
+                        </span>
+                </h5>
             </li>
             <li class="nav-item">
                 <a href="#about">Introductions</a>
@@ -66,9 +70,12 @@
         </ul>
     </div>
 
+
     <div class="content">
         <h1 class="text-center">
-            Documentation
+            <span class="show-md">
+                <i class="fas fa-bars fa-md" onclick="toggleSidebar()"></i>   Documentation
+            </span>
         </h1>
 
         <div id="about" class="section">
@@ -522,11 +529,27 @@
 
 
     <script>
+
+        var t=0;
+
         document.addEventListener('DOMContentLoaded', (event) => {
             document.querySelectorAll('pre code').forEach((block) => {
                 hljs.highlightBlock(block);
             });
-        });</script>
+        });
+
+        function toggleSidebar(){
+            if (t == 0){
+                document.getElementById("sidebar").classList.add("open")
+                t = 1;
+            }else{
+                document.getElementById("sidebar").classList.remove("open")
+                t = 0;
+            }
+        }
+
+
+    </script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>

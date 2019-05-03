@@ -40,6 +40,18 @@ h4.topic{
     width: 300px;
     background: #1b2733;
     padding: 20px;
+    transition: all 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.side-nav.open {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 300px;
+    background: #1b2733;
+    padding: 20px;
+
 }
 .content {
     padding: 30px;
